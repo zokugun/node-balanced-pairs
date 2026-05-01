@@ -14,5 +14,5 @@ artifacts:
     version: 0.2.11
   "@daiyam/artifact-npm-zokugun":
     version: 0.3.2
-  "@daiyam/artifact-test-mocha-ts":
-    version: 0.5.0
+  "@daiyam/artifact-test-vitest-ts":
+    version: 0.5.2

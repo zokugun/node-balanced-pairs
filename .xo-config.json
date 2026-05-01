@@ -3,8 +3,7 @@
 		"./*.config.js",
 		"./test/fixtures",
 		"*.config.js",
-		"*.config.ts",
-		"test/fixtures"
+		"*.config.ts"
 	],
 	"rules": {
 		"arrow-parens": [
@@ -170,15 +169,11 @@
 			}
 		]
 	},
-	"plugins": [
-		"chai-friendly"
-	],
 	"overrides": [
 		{
 			"files": "**/*.test.ts",
 			"rules": {
-				"@typescript-eslint/no-unused-expressions": "off",
-				"chai-friendly/no-unused-expressions": "error"
+				"@typescript-eslint/no-unused-expressions": "off"
 			}
 		}
 	]
