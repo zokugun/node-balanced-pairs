@@ -1,14 +1,14 @@
-import path from 'path';
 import fs from 'fs';
-import yaml from 'yaml';
+import path from 'path';
 import { expect } from 'chai';
-import globby from 'globby';
-import { Config, matchPair, Position } from '../src';
+import { globbySync } from 'globby';
+import yaml from 'yaml';
+import { type Config, matchPair, type Position } from '../src/index.js';
 
 describe('test', () => {
 	function prepare(file: string) {
 		const name = path.basename(file).slice(0, path.basename(file).lastIndexOf('.'));
-		const data = yaml.parse(fs.readFileSync(file, 'utf-8')) as { text: string; config: Config; tests: Array<{ position: Position; result: Position }> };
+		const data = yaml.parse(fs.readFileSync(file, 'utf8')) as { text: string; config: Config; tests: Array<{ position: Position; result: Position }> };
 
 		for(const [index, test] of data.tests.entries()) {
 			it(`${name} #${index}`, () => {
@@ -19,7 +19,7 @@ describe('test', () => {
 		}
 	}
 
-	const files = globby.sync('test/fixtures/*.yml');
+	const files = globbySync('test/fixtures/*.yml');
 
 	for(const file of files) {
 		prepare(file);

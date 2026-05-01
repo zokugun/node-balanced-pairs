@@ -1,5 +1,5 @@
-import { CommentsConfig } from './config';
-import { Pair } from './types/pair';
+import { type CommentsConfig } from './config.js';
+import { type Pair } from './types/pair.js';
 
 export abstract class Scanner {
 	protected _eof = false;

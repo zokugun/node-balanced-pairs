@@ -1,10 +1,9 @@
-require: ts-node/register
-extension:
-- ts
+require:
+  - source-map-support/register
 spec:
-- test/*.ts
+  - .test/test/**/*.test.js
 watch-files:
-- src
+  - .test/src
 reporter: spec
 color: true
 check-leaks: true

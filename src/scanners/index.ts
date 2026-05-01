@@ -1,5 +1,5 @@
-import { Pair } from '../types/pair';
-import { Scanner } from '../scanner';
+import { Scanner } from '../scanner.js';
+import { type Pair } from '../types/pair.js';
 
 export class IndexScanner extends Scanner {
 	private readonly _data: string;
@@ -50,7 +50,7 @@ export class IndexScanner extends Scanner {
 	protected advanceNextLine(): void { // {{{
 		let c: number;
 		while(++this._index < this._length) {
-			c = this._data.charCodeAt(this._index);
+			c = this._data.codePointAt(this._index)!;
 
 			if(c === 10) {
 				++this._index;
@@ -59,7 +59,7 @@ export class IndexScanner extends Scanner {
 			else if(c === 13) {
 				++this._index;
 
-				if(this._index < this._length && this._data.charCodeAt(this._index) === 10) {
+				if(this._index < this._length && this._data.codePointAt(this._index) === 10) {
 					++this._index;
 				}
 
@@ -89,7 +89,7 @@ export class IndexScanner extends Scanner {
 	protected skipWhitespaces(): void { // {{{
 		let c: number;
 		while(this._index + 1 < this._length) {
-			c = this._data.charCodeAt(this._index + 1);
+			c = this._data.codePointAt(this._index + 1)!;
 
 			if(c === 9 || c === 32) {
 				++this._index;

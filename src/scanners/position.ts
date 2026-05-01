@@ -1,7 +1,7 @@
-import { Pair } from '../types/pair';
-import { Position } from '../types/position';
-import { Scanner } from '../scanner';
-import { LineTransformer } from '../types/line-transformer';
+import { Scanner } from '../scanner.js';
+import { type LineTransformer } from '../types/line-transformer.js';
+import { type Pair } from '../types/pair.js';
+import { type Position } from '../types/position.js';
 
 export class PositionScanner extends Scanner {
 	private _column = 1;

@@ -1,5 +1,5 @@
 {
-	"name": "@daiyam/balanced-pairs",
+	"name": "@zokugun/balanced-pairs",
 	"description": "Find your brackets and quotes in pairs",
 	"version": "0.1.1",
 	"author": {
@@ -7,46 +7,89 @@
 		"email": "daiyam@zokugun.org"
 	},
 	"license": "MIT",
-	"homepage": "https://github.com/daiyam/node-balanced-pairs",
+	"homepage": "https://github.com/zokugun/node-balanced-pairs",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/daiyam/node-balanced-pairs.git"
+		"url": "git+https://github.com/zokugun/node-balanced-pairs.git"
 	},
 	"bugs": {
-		"url": "https://github.com/daiyam/node-balanced-pairs/issues"
+		"url": "https://github.com/zokugun/node-balanced-pairs/issues"
 	},
-	"main": "lib/index.js",
+	"type": "module",
+	"exports": {
+		".": {
+			"import": "./lib/esm/index.mjs",
+			"require": "./lib/cjs/index.cjs"
+		}
+	},
+	"main": "lib/cjs/index.cjs",
+	"module": "lib/esm/index.mjs",
 	"types": "lib/index.d.ts",
+	"typesVersions": {
+		"*": {
+			".": [
+				"./lib/cjs/index.d.cts"
+			]
+		}
+	},
 	"scripts": {
-		"commit": "cz",
-		"compile": "tsc -p ./",
+		"audit:fix": "npm audit fix --min-release-age=0",
+		"build": "npm run clean && npm run build:lib",
+		"build:lib": "tsc-leda generate",
+		"build:package": "tsc-leda update-package && npm run lint:package",
+		"ci:lint": "zizmor .",
+		"ci:lint:fix": "zizmor . --fix=all",
+		"clean": "rimraf lib; rimraf .src",
+		"compile:src": "tsc -p src",
 		"lint": "xo",
-		"prepare": "husky install;",
-		"prepublishOnly": "npm run compile",
+		"lint:all": "fixpack && npm audit && npm run ci:lint && npm run lint",
+		"lint:fix": "xo --fix",
+		"lint:package": "fixpack || true",
+		"prepack": "npm run build",
+		"prepare": "husky; npm run lint:package",
 		"release": "release-it",
-		"test": "mocha",
-		"test:watch": "mocha --watch",
-		"watch": "tsc -watch -p ./"
+		"test": "tsc -p test && mocha",
+		"test:dev": "mocha",
+		"test:watch": "tsc-watch -p src -p test --onSuccess 'mocha'",
+		"update:artifacts": "artifact update",
+		"update:ci": "PINACT_MIN_AGE=7 pinact run --update",
+		"update:deps": "taze --all",
+		"watch:build": "tsc-watch -p src --onSuccess 'npm run build'",
+		"watch:src": "tsc-watch -p src",
+		"watch:test": "tsc-watch -p test"
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@commitlint/cli": "^13.1.0",
-		"@commitlint/config-conventional": "^13.1.0",
-		"@types/chai": "^4.2.17",
-		"@types/mocha": "^8.2.2",
-		"@types/node": "^14.16.1",
-		"chai": "^4.3.4",
-		"commitizen": "^4.2.4",
-		"fixpack": "^4.0.0",
-		"globby": "^11.0.4",
-		"husky": "^7.0.1",
-		"lint-staged": "^11.1.1",
-		"mocha": "^8.3.2",
-		"release-it": "^14.11.3",
-		"ts-node": "^10.1.0",
-		"typescript": "^4.2.4",
-		"xo": "^0.43.0",
-		"yaml": "^1.10.2"
+		"@commitlint/cli": "20.5.2",
+		"@commitlint/config-conventional": "20.5.0",
+		"@types/chai": "4.3.16",
+		"@types/fs-extra": "11.0.4",
+		"@types/mocha": "10.0.10",
+		"@types/node": "20.19.39",
+		"@zokugun/tsc-leda": "0.4.0",
+		"chai": "4.5.0",
+		"chai-as-promised": "7.1.2",
+		"eslint-plugin-chai-friendly": "1.2.0",
+		"fixpack": "4.0.0",
+		"fs-extra": "11.3.4",
+		"globby": "14.1.0",
+		"husky": "9.1.7",
+		"lint-staged": "16.4.0",
+		"mocha": "11.7.5",
+		"release-it": "20.0.1",
+		"rimraf": "6.1.3",
+		"source-map-support": "0.5.21",
+		"taze": "19.11.0",
+		"tsc-watch": "7.2.0",
+		"typescript": "5.9.3",
+		"xo": "0.60.0",
+		"yaml": "2.8.3"
+	},
+	"overrides": {
+		"mocha": {
+			"diff": "8.0.3",
+			"serialize-javascript": "7.0.5"
+		}
 	},
 	"keywords": [
 		"balance",

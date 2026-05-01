@@ -6,3 +6,7 @@
 !README.md
 !lib/**/*.js
 !lib/**/*.d.ts
+!lib/**/*.cjs
+!lib/**/*.mjs
+!lib/**/*.d.cts
+!lib/**/*.d.mts

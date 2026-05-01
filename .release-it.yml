@@ -4,3 +4,4 @@ git:
   tagAnnotation: Release version ${version}
 npm:
   publish: false
+disable-metrics: true

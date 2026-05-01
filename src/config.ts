@@ -1,6 +1,6 @@
-import { Pair } from './types/pair';
+import { type Pair } from './types/pair.js';
 
-export interface Config {
+export type Config = {
 	pairs: {
 		blocks: string[][];
 		strings: string[][];
@@ -9,20 +9,20 @@ export interface Config {
 		blocks: string[][];
 		lines: string[];
 	};
-}
+};
 
-export interface WorkingConfig {
+export type WorkingConfig = {
 	pairs: Record<string, Pair>;
 	comments: CommentsConfig;
-}
+};
 
-export interface CommentsConfig {
+export type CommentsConfig = {
 	blocks: Array<{
 		open: string[];
 		close: string[];
 	}>;
 	lines: string[][];
-}
+};
 
 export function toWorkingConfig(config: Config): WorkingConfig {
 	const pairs = {};
