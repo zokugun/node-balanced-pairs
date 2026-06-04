@@ -3,30 +3,19 @@
 		"./*.config.js",
 		"./test/fixtures",
 		"*.config.js",
-		"*.config.ts"
+		"*.config.ts",
+		"test/fixtures"
+	],
+	"overrides": [
+		{
+			"files": "**/*.test.ts",
+			"rules": {
+				"@typescript-eslint/no-unused-expressions": "off"
+			}
+		}
 	],
 	"rules": {
-		"arrow-parens": [
-			"error",
-			"always"
-		],
-		"capitalized-comments": "off",
-		"complexity": "off",
-		"default-case": "off",
-		"max-depth": [
-			"error",
-			8
-		],
-		"max-params": [
-			"error",
-			12
-		],
-		"no-else-return": "off",
-		"no-await-in-loop": "off",
-		"one-var": [
-			"error",
-			"never"
-		],
+		"@typescript-eslint/ban-types": "off",
 		"@typescript-eslint/brace-style": [
 			"error",
 			"stroustrup"
@@ -54,18 +43,6 @@
 				}
 			}
 		],
-		"@typescript-eslint/no-confusing-void-expression": "off",
-		"@typescript-eslint/no-namespace": "off",
-		"@typescript-eslint/object-curly-spacing": [
-			"error",
-			"always"
-		],
-		"unicorn/empty-brace-spaces": "off",
-		"unicorn/prefer-module": "off",
-		"unicorn/prefer-node-protocol": "off",
-		"unicorn/prefer-switch": "off",
-		"unicorn/prefer-ternary": "off",
-		"@typescript-eslint/ban-types": "off",
 		"@typescript-eslint/member-ordering": [
 			"error",
 			{
@@ -106,6 +83,7 @@
 				}
 			}
 		],
+		"@typescript-eslint/no-confusing-void-expression": "off",
 		"@typescript-eslint/no-dynamic-delete": "off",
 		"@typescript-eslint/no-empty-function": [
 			"error",
@@ -116,9 +94,27 @@
 			}
 		],
 		"@typescript-eslint/no-inferrable-types": "off",
+		"@typescript-eslint/no-namespace": "off",
+		"@typescript-eslint/object-curly-spacing": [
+			"error",
+			"always"
+		],
 		"@typescript-eslint/parameter-properties": "off",
+		"@typescript-eslint/prefer-nullish-coalescing": [
+			"error",
+			{
+				"ignoreConditionalTests": true
+			}
+		],
 		"@typescript-eslint/prefer-promise-reject-errors": "off",
 		"@typescript-eslint/return-await": "off",
+		"arrow-parens": [
+			"error",
+			"always"
+		],
+		"capitalized-comments": "off",
+		"complexity": "off",
+		"default-case": "off",
 		"import/extensions": [
 			"error",
 			"never"
@@ -141,14 +137,33 @@
 				}
 			}
 		],
+		"max-depth": [
+			"error",
+			8
+		],
+		"max-params": [
+			"error",
+			12
+		],
+		"no-await-in-loop": "off",
+		"no-else-return": "off",
 		"no-lonely-if": "off",
 		"no-negated-condition": "off",
 		"object-curly-newline": "off",
 		"object-shorthand": "off",
+		"one-var": [
+			"error",
+			"never"
+		],
+		"unicorn/empty-brace-spaces": "off",
 		"unicorn/no-array-callback-reference": "off",
 		"unicorn/no-length-as-slice-end": "off",
 		"unicorn/no-object-as-default-parameter": "off",
 		"unicorn/prefer-json-parse-buffer": "off",
+		"unicorn/prefer-module": "off",
+		"unicorn/prefer-node-protocol": "off",
+		"unicorn/prefer-switch": "off",
+		"unicorn/prefer-ternary": "off",
 		"unicorn/prevent-abbreviations": [
 			"error",
 			{
@@ -164,17 +179,10 @@
 					"mod": false,
 					"num": false,
 					"pkg": false,
-					"str": false
+					"str": false,
+					"temp": false
 				}
 			}
 		]
-	},
-	"overrides": [
-		{
-			"files": "**/*.test.ts",
-			"rules": {
-				"@typescript-eslint/no-unused-expressions": "off"
-			}
-		}
-	]
+	}
 }
